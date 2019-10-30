@@ -15,11 +15,50 @@
 
         <script type="text/babel">
             class App extends React.Component {
+                state = {
+                    name: "Arend",
+                    age: 34
+                }
+                
+                handleClick = (e)=>{
+                    this.setState({
+                        name: "The dude"
+                    })
+                    console.log(this.state);
+                }
+                handleMouseOver(e){
+                    console.log(e);
+                }
+                handleCopy(e){
+                    console.log("Text has been copied.")
+                }
+                handleChange = (e) =>{
+                    this.setState({
+                        name: e.target.value
+                    });
+                }
+
+                handleSubmit = (e) =>{
+                    e.preventDefault();
+                    console.log("form submitted", this.state.name)
+                }
+
+
                 render(){
+                    
                     return(
                         <div>
                             <h1>Hello React</h1>
                             <p>{ Math.floor(Math.random() * 10 +1) }</p>
+                            <p>My name is { this.state.name } and I am { this.state.age }.</p>
+                            <button onClick={this.handleClick}>Click Me</button>
+                            <button onMouseOver={this.handleMouseOver}>Hover Me</button>
+                            <p onCopy={this.handleCopy}>What we think, we become</p>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="text" onChange={this.handleChange}/>
+                                <button>Submit</button>
+                            </form>
+
                         </div>
                     )    
                 }
